@@ -1,12 +1,57 @@
-# Subgraph for Ethereum block data
+# Blocks Subgraph
 
-This subgraph indexes all block data on the [Arbitrum One mainnet beta network](https://offchain.medium.com/introducing-arbitrum-one-our-mainet-beta-ed0e9b63b435). 
+A subgraph that indexes block data for EVM networks.
 
-Every block is handled by one mapping ```handleBlock```
+## Setup
 
-##### Note 
+```bash
+yarn install
+```
 
-The contract `ConverterRegistryContract` found in ABIs and subgraph.yaml is just a dummy contract used to pass formatting checks. Each block is handled automatically regardless of the logic in this contract. 
- 
-## 
-Subgraph endpoint: [https://thegraph.com/explorer/subgraph/ianlapham/arbitrum-one-blocks](https://thegraph.com/explorer/subgraph/ianlapham/arbitrum-one-blocks).
+## Deploy Workflow
+
+### 1. Generate subgraph manifest for your network
+
+```bash
+yarn generate <network>
+```
+
+**Supported networks:**
+- `mainnet`
+- `arbitrum-one`
+- `optimism`
+- `polygon`
+- `base`
+- etc.
+
+### 2. Build the subgraph
+
+```bash
+yarn build
+```
+
+### 3. Deploy
+
+```bash
+yarn deploy --studio <subgraph-name>
+# or
+yarn deploy --product hosted-service <github-user>/<subgraph-name>
+```
+
+## Example: Deploy to Arbitrum One
+
+```bash
+yarn generate arbitrum-one
+yarn build
+yarn deploy --studio arbitrum-one-blocks
+```
+
+## Architecture
+
+- `subgraph.template.yaml` - Template with `{{network}}` placeholder
+- `scripts/generate-subgraph.ts` - Generates `subgraph.yaml` for a specific network
+- `src/mappings/blocks.ts` - Block handler that indexes all block data
+
+### Note
+
+The `ConverterRegistryContract` in ABIs and subgraph.yaml is a dummy contract used to pass formatting checks. Each block is handled automatically via the `blockHandlers` configuration.

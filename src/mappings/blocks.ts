@@ -1,5 +1,5 @@
 import { ethereum } from '@graphprotocol/graph-ts'
-import { Block } from '../types/schema'
+import { Block } from '../../generated/schema'
 
 export function handleBlock(block: ethereum.Block): void {
   let id = block.hash.toHex()
