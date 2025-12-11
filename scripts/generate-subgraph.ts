@@ -1,13 +1,11 @@
-#!/usr/bin/env node
-
-const fs = require('fs');
-const path = require('path');
+import * as fs from 'fs';
+import * as path from 'path';
 
 const network = process.argv[2];
 
 if (!network) {
-  console.error('Usage: node scripts/generate-subgraph.js <network>');
-  console.error('Example: node scripts/generate-subgraph.js arbitrum-one');
+  console.error('Usage: npx tsx scripts/generate-subgraph.ts <network>');
+  console.error('Example: npx tsx scripts/generate-subgraph.ts arbitrum-one');
   process.exit(1);
 }
 

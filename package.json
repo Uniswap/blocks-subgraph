@@ -4,10 +4,12 @@
   "repository": "https://github.com/graphprotocol/uniswap-v3-subgraph",
   "license": "GPL-3.0-or-later",
   "scripts": {
-    "generate": "node scripts/generate-subgraph.js",
-    "build": "graph codegen && graph build"
+    "generate": "npx tsx scripts/generate-subgraph.ts",
+    "build": "graph codegen && graph build",
+    "deploy": "graph deploy"
   },
   "devDependencies": {
+    "tsx": "^4.19.0",
     "@graphprotocol/graph-cli": "^0.98.1",
     "@graphprotocol/graph-ts": "^0.38.2",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
